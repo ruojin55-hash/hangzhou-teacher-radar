@@ -1,0 +1,136 @@
+{
+  "sources": [
+    {
+      "name": "杭州市教育局",
+      "district": "市直属",
+      "root": "https://edu.hangzhou.gov.cn/",
+      "official": true
+    },
+    {
+      "name": "杭州市人力资源和社会保障局",
+      "district": "市直属",
+      "root": "https://hrss.hangzhou.gov.cn/",
+      "official": true
+    },
+    {
+      "name": "上城区人民政府",
+      "district": "上城区",
+      "root": "https://www.hzsc.gov.cn/",
+      "official": true
+    },
+    {
+      "name": "拱墅区人民政府",
+      "district": "拱墅区",
+      "root": "https://www.gongshu.gov.cn/",
+      "official": true
+    },
+    {
+      "name": "西湖区人民政府",
+      "district": "西湖区",
+      "root": "https://www.hzxh.gov.cn/",
+      "official": true
+    },
+    {
+      "name": "滨江区人民政府",
+      "district": "滨江区",
+      "root": "https://www.hhtz.gov.cn/",
+      "official": true
+    },
+    {
+      "name": "萧山区教育局",
+      "district": "萧山区",
+      "root": "http://www.xiaoshan.gov.cn/jyj/",
+      "official": true
+    },
+    {
+      "name": "余杭区人民政府",
+      "district": "余杭区",
+      "root": "http://www.yuhang.gov.cn/",
+      "official": true
+    },
+    {
+      "name": "余杭区教育局教师招考系统",
+      "district": "余杭区",
+      "root": "https://jszk-jyj.hzyuhang.cn:49355/",
+      "official": true
+    },
+    {
+      "name": "临平区人民政府",
+      "district": "临平区",
+      "root": "https://www.linping.gov.cn/",
+      "official": true
+    },
+    {
+      "name": "钱塘区人民政府",
+      "district": "钱塘区",
+      "root": "https://www.qiantang.gov.cn/",
+      "official": true
+    },
+    {
+      "name": "钱塘区教师招聘平台",
+      "district": "钱塘区",
+      "root": "http://qtqjyjzp.ehrel.com/apply/index.action",
+      "official": true
+    },
+    {
+      "name": "富阳区人民政府",
+      "district": "富阳区",
+      "root": "https://www.fuyang.gov.cn/",
+      "official": true
+    },
+    {
+      "name": "临安区人民政府",
+      "district": "临安区",
+      "root": "https://www.linan.gov.cn/",
+      "official": true
+    }
+  ],
+  "rules": {
+    "candidate_link_keywords": [
+      "教师",
+      "招聘",
+      "招考",
+      "公开招聘",
+      "人事",
+      "教育",
+      "事业单位",
+      "应届",
+      "校园招聘",
+      "人才"
+    ],
+    "must_contain_any": [
+      "教师",
+      "中学",
+      "学校",
+      "教育"
+    ],
+    "recruitment_keywords": [
+      "招聘",
+      "招考",
+      "公开招聘",
+      "招聘教师",
+      "教师招聘",
+      "校园招聘",
+      "人才引进"
+    ],
+    "english_keywords": [
+      "英语",
+      "English"
+    ],
+    "target_keywords": [
+      "2027届",
+      "应届毕业生",
+      "应届生",
+      "优秀毕业生"
+    ],
+    "employment_keywords": [
+      "事业编",
+      "事业编制",
+      "公办编制",
+      "事业单位",
+      "在编",
+      "非编",
+      "劳务派遣"
+    ]
+  }
+}

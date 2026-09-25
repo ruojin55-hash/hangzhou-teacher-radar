@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>杭州教师编求职雷达｜自动更新版</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#182230;--muted:#667085;--line:#e6eaf0;--brand:#315efb;
+--green:#067647;--greenbg:#ecfdf3;--amber:#b54708;--amberbg:#fffaeb;--red:#b42318;--redbg:#fef3f2;--bluebg:#eef2ff}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink)}
+.wrap{max-width:1220px;margin:auto;padding:26px 18px 50px}
+header{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+h1{margin:0;font-size:30px} .subtitle{color:var(--muted);font-size:14px;margin-top:7px;line-height:1.6}
+.update{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:12px;color:var(--muted);white-space:nowrap}
+.hero{margin:18px 0;background:linear-gradient(135deg,#fff,#eef3ff);border:1px solid #dce5ff;border-radius:18px;padding:18px}
+.hero b{font-size:16px} .hero p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.75}
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:16px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px} .stat small{color:var(--muted)} .stat strong{display:block;font-size:28px;margin-top:4px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px}
+.filters{display:grid;grid-template-columns:repeat(7,1fr);gap:10px} label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px}
+select,input,textarea{width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:14px;font-family:inherit}
+.checkrow{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px} .checkrow label{font-size:14px;color:var(--ink);margin:0}
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px} .toolbar h2{font-size:18px;margin:0} .toolbar span{font-size:12px;color:var(--muted)}
+.job{border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:11px} .job:hover{border-color:#cdd7ff}
+.head{display:flex;justify-content:space-between;gap:12px} .title{font-size:17px;font-weight:750} .school{color:var(--muted);font-size:13px;margin-top:4px}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin:11px 0} .tag{display:inline-block;padding:4px 8px;border-radius:999px;background:#f2f4f7;color:#344054;font-size:12px}
+.blue{background:var(--bluebg);color:#3538cd} .green{background:var(--greenbg);color:var(--green)} .amber{background:var(--amberbg);color:var(--amber)} .red{background:var(--redbg);color:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:13px;color:#475467} .grid b{display:block;color:var(--ink);margin-bottom:3px}
+.note{margin-top:11px;padding:10px 11px;background:#f8fafc;border-radius:9px;font-size:12px;color:#475467;line-height:1.6}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px} .btn{border:0;border-radius:9px;padding:9px 12px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+.primary{background:var(--brand);color:#fff} .ghost{background:#f2f4f7;color:#344054} .star{border:0;background:transparent;font-size:23px;cursor:pointer}
+.applied-btn{background:#ecfdf3;color:#067647;border:1px solid #abefc6}
+.applied-btn.done{background:#067647;color:#fff;border-color:#067647}
+.applied-info{font-size:12px;color:#067647;margin-top:8px;font-weight:600}
+.progress-box{margin-top:12px;padding:12px;background:#fafbfc;border:1px solid var(--line);border-radius:11px}
+.progress-grid{display:grid;grid-template-columns:1.1fr 1fr 2fr;gap:10px;align-items:end}
+.progress-box label{margin-bottom:5px}
+.stage-select{font-weight:650}
+.stage-badge{font-size:12px;padding:4px 8px;border-radius:999px;font-weight:650}
+.stage-none{background:#f2f4f7;color:#475467}
+.stage-applied{background:#eef2ff;color:#3538cd}
+.stage-contact{background:#eff8ff;color:#175cd3}
+.stage-test{background:#fff6ed;color:#b54708}
+.stage-interview{background:#f4f3ff;color:#5925dc}
+.stage-offer{background:#ecfdf3;color:#067647}
+.stage-failed{background:#fef3f2;color:#b42318}
+.stage-abandon{background:#f2f4f7;color:#667085}
+.timeline{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6}
+.backupbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.smallbtn{border:1px solid var(--line);background:#fff;color:#344054;border-radius:9px;padding:8px 10px;font-size:12px;cursor:pointer}
+
+.sourcebox{display:grid;grid-template-columns:repeat(3,1fr);gap:10px} .source{border:1px solid var(--line);border-radius:12px;padding:13px}
+.source b{font-size:14px} .source p{font-size:12px;color:var(--muted);line-height:1.6} .source a{font-size:13px;color:var(--brand);text-decoration:none}
+.empty{padding:30px;text-align:center;color:var(--muted)} .hidden{display:none}
+.legend{font-size:12px;color:var(--muted);line-height:1.8}
+
+.tabs{display:flex;gap:8px;margin:0 0 16px;flex-wrap:wrap}
+.tabbtn{border:1px solid var(--line);background:#fff;color:#475467;padding:10px 14px;border-radius:10px;font-size:14px;font-weight:650;cursor:pointer}
+.tabbtn.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.view{display:none}
+.view.active{display:block}
+.application-table-wrap{overflow:auto;border:1px solid var(--line);border-radius:13px}
+.application-table{width:100%;border-collapse:collapse;min-width:1180px}
+.application-table th,.application-table td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:13px}
+.application-table th{background:#f8fafc;color:#475467;font-size:12px;position:sticky;top:0;z-index:1}
+.application-table tr:hover td{background:#fbfcfe}
+.application-table select,.application-table input{min-width:120px;padding:7px 8px;font-size:12px}
+.application-table .note-input{min-width:220px}
+.application-table a{color:var(--brand);text-decoration:none}
+.summary-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.summary-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.summary-card small{color:var(--muted)}
+.summary-card b{display:block;font-size:22px;margin-top:4px}
+.table-tools{display:flex;justify-content:space-between;gap:10px;align-items:end;flex-wrap:wrap;margin-bottom:10px}
+.table-filters{display:flex;gap:8px;flex-wrap:wrap}
+.table-filters select,.table-filters input{width:auto;min-width:150px}
+.due-soon{color:#b54708;font-weight:700}
+.due-over{color:#b42318;font-weight:700}
+
+@media(max-width:900px){.filters{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.progress-grid{grid-template-columns:1fr}.sourcebox{grid-template-columns:1fr}.summary-cards{grid-template-columns:repeat(2,1fr)}header{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div>
+<h1>杭州教师编求职雷达｜自动更新版</h1>
+<div class="subtitle">27届毕业生 · 杭州 · 初中/高中 · 英语教师 · 事业编优先</div>
+</div>
+<div class="update" id="updateBox">正在读取最新岗位数据…<br>关键资格请以原公告为准</div>
+</header>
+
+<div class="hero">
+<b>在线自动更新版：每天读取最新招聘数据，同时保留你的收藏与求职进度。</b>
+<p>网页数据来自 data/jobs.json，由每日自动任务刷新。收藏、已投递、笔试、面试、Offer 和备注仍保存在你的浏览器中。</p>
+</div>
+
+<div class="tabs">
+  <button class="tabbtn active" id="tabRadar" onclick="switchView('radar')">招聘雷达</button>
+  <button class="tabbtn" id="tabApplications" onclick="switchView('applications')">我的求职总表</button>
+</div>
+
+<div id="radarView" class="view active">
+<div class="stats">
+<div class="stat"><small>当前筛选结果</small><strong id="s1">0</strong></div>
+<div class="stat"><small>已投递</small><strong id="s2">0</strong></div>
+<div class="stat"><small>已联系</small><strong id="s3">0</strong></div>
+<div class="stat"><small>进入笔试</small><strong id="s4">0</strong></div>
+<div class="stat"><small>进入面试</small><strong id="s5">0</strong></div>
+<div class="stat"><small>Offer</small><strong id="s6">0</strong></div>
+</div>
+
+<div class="panel">
+<div class="filters">
+<div><label>地区</label><select id="district"><option value="">全部杭州</option><option>西湖区</option><option>钱塘区</option><option>拱墅区</option><option>滨江区</option><option>市直属 / 多校区</option></select></div>
+<div><label>学段</label><select id="level"><option value="">初中 + 高中</option><option>初中</option><option>高中</option></select></div>
+<div><label>岗位状态</label><select id="status"><option value="">全部状态</option><option>报名中</option><option>人才库开放</option><option>持续关注</option><option>宣讲已结束</option><option>宣讲/招聘会已结束</option></select></div>
+<div><label>27届资格</label><select id="elig"><option value="">全部</option><option value="yes">明确可报</option><option value="unknown">待确认</option></select></div>
+<div><label>编制/性质</label><select id="emp"><option value="">全部</option><option value="公办编制">明确公办编制</option><option value="事业编">含事业编线索</option></select></div>
+<div><label>求职进度</label><select id="stageFilter">
+      <option value="">全部进度</option>
+      <option>未投递</option><option>已投递</option><option>已联系</option>
+      <option>笔试</option><option>面试</option><option>Offer</option>
+      <option>未通过</option><option>放弃</option>
+    </select></div>
+    <div><label>搜索</label><input id="q" placeholder="学校 / 专业 / 条件"></div>
+</div>
+<div class="checkrow">
+<label><input type="checkbox" id="english" checked> 只看英语相关</label>
+<label><input type="checkbox" id="active" checked> 隐藏已结束活动</label>
+<label><input type="checkbox" id="favonly"> 只看收藏</label>
+<label><input type="checkbox" id="inprocessonly"> 只看已进入求职流程</label>
+</div>
+<div class="backupbar">
+  <button class="smallbtn" onclick="exportProgress()">导出求职记录备份</button>
+  <button class="smallbtn" onclick="showProgressSummary()">查看进度汇总</button>
+</div>
+</div>
+
+<div class="panel">
+<div class="toolbar"><h2>岗位与重点线索</h2><span id="count"></span></div>
+<div id="jobs"></div>
+<div id="empty" class="empty hidden">没有符合当前筛选条件的岗位。</div>
+</div>
+
+<div class="panel">
+<div class="toolbar"><h2>每天建议优先检查的官方入口</h2><span>正式编制最终以政府/教育局公告为准</span></div>
+<div class="sourcebox">
+<div class="source"><b>杭州市教育局</b><p>重点看市直属学校事业单位公开招聘、教职工招聘及后续公告。</p><a href="https://edu.hangzhou.gov.cn/" target="_blank">打开官网 ↗</a></div>
+<div class="source"><b>杭州市人力资源和社会保障局</b><p>市教育局所属事业单位正式招聘公告常与人社渠道同步发布。</p><a href="https://hrss.hangzhou.gov.cn/" target="_blank">打开官网 ↗</a></div>
+<div class="source"><b>钱塘区政府 / 教育系统</b><p>学军金沙湖等钱塘公办学校的最终岗位、资格、流程需以区级正式公告为准。</p><a href="https://www.qiantang.gov.cn/" target="_blank">打开官网 ↗</a></div>
+</div>
+<div class="legend">提示：学校“预登记/人才库/宣讲会”可以提前投简历，但它和正式事业单位公开招聘不是同一个环节。页面会把两者分开标记。</div>
+</div>
+
+<div id="applicationsView" class="view">
+  <div class="panel">
+    <div class="toolbar">
+      <h2>我的求职总表</h2>
+      <span>统一管理所有已经进入求职流程的岗位</span>
+    </div>
+
+    <div class="summary-cards">
+      <div class="summary-card"><small>进行中</small><b id="appInProgress">0</b></div>
+      <div class="summary-card"><small>待笔试/面试</small><b id="appUpcoming">0</b></div>
+      <div class="summary-card"><small>Offer</small><b id="appOffer">0</b></div>
+      <div class="summary-card"><small>未通过/放弃</small><b id="appClosed">0</b></div>
+    </div>
+
+    <div class="table-tools">
+      <div class="table-filters">
+        <select id="tableStageFilter" onchange="renderApplicationTable()">
+          <option value="">全部阶段</option>
+          <option>已投递</option><option>已联系</option><option>笔试</option>
+          <option>面试</option><option>Offer</option><option>未通过</option><option>放弃</option>
+        </select>
+        <input id="tableSearch" placeholder="搜索学校 / 岗位 / 备注" oninput="renderApplicationTable()">
+      </div>
+      <div class="backupbar">
+        <button class="smallbtn" onclick="exportCSV()">导出 CSV</button>
+        <button class="smallbtn" onclick="exportProgress()">导出 JSON 备份</button>
+      </div>
+    </div>
+
+    <div class="application-table-wrap">
+      <table class="application-table">
+        <thead>
+          <tr>
+            <th>学校</th>
+            <th>岗位</th>
+            <th>地区</th>
+            <th>编制/性质</th>
+            <th>当前阶段</th>
+            <th>最近更新</th>
+            <th>下一步日期</th>
+            <th>备注</th>
+            <th>来源</th>
+          </tr>
+        </thead>
+        <tbody id="applicationTableBody"></tbody>
+      </table>
+    </div>
+    <div id="applicationEmpty" class="empty hidden">还没有进入求职流程的岗位。你在“招聘雷达”里把岗位改成“已投递”后，就会自动出现在这里。</div>
+  </div>
+</div>
+</div>
+
+<script>
+let jobs=[];
+const favs=new Set(JSON.parse(localStorage.getItem("hz_teacher_favs_v3")||"[]"));
+const legacyApplied=JSON.parse(localStorage.getItem("hz_teacher_applied_v4")||"{}");
+const applicationState=JSON.parse(localStorage.getItem("hz_teacher_application_v5")||"{}");
+
+// 自动迁移 V4 的“已投递”记录
+for(const [id,time] of Object.entries(legacyApplied)){
+  if(!applicationState[id]){
+    applicationState[id]={stage:"已投递",updatedAt:time,nextDate:"",note:""};
+  }
+}
+localStorage.setItem("hz_teacher_application_v5",JSON.stringify(applicationState));
+
+const STAGES=["未投递","已投递","已联系","笔试","面试","Offer","未通过","放弃"];
+
+function esc(s){return String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]))}
+function eligTag(j){
+  return j.eligibility==="yes"
+    ? '<span class="tag green">2027届明确可报</span>'
+    : '<span class="tag amber">2027届待确认</span>';
+}
+function statusTag(j){
+  let c=j.status_type==="open"?"green":j.status_type==="closed"?"red":"amber";
+  return `<span class="tag ${c}">${esc(j.status)}</span>`;
+}
+function isEnglish(j){return j.subject.includes("英语") || j.position.includes("英语")}
+function isActive(j){return j.status_type!=="closed"}
+function getApp(id){
+  return applicationState[id] || {stage:"未投递",updatedAt:"",nextDate:"",note:""};
+}
+function nowText(){
+  const now=new Date(), pad=n=>String(n).padStart(2,"0");
+  return `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+}
+function stageClass(stage){
+  return {
+    "未投递":"stage-none","已投递":"stage-applied","已联系":"stage-contact",
+    "笔试":"stage-test","面试":"stage-interview","Offer":"stage-offer",
+    "未通过":"stage-failed","放弃":"stage-abandon"
+  }[stage] || "stage-none";
+}
+function stageOptions(current){
+  return STAGES.map(s=>`<option ${s===current?"selected":""}>${s}</option>`).join("");
+}
+
+
+
+function switchView(name){
+  const radar=name==="radar";
+  document.querySelector("#radarView").classList.toggle("active",radar);
+  document.querySelector("#applicationsView").classList.toggle("active",!radar);
+  document.querySelector("#tabRadar").classList.toggle("active",radar);
+  document.querySelector("#tabApplications").classList.toggle("active",!radar);
+  if(!radar) renderApplicationTable();
+}
+
+function dueClass(dateStr){
+  if(!dateStr) return "";
+  const today=new Date(); today.setHours(0,0,0,0);
+  const d=new Date(dateStr+"T00:00:00");
+  const diff=Math.ceil((d-today)/(1000*60*60*24));
+  if(diff<0) return "due-over";
+  if(diff<=3) return "due-soon";
+  return "";
+}
+
+function renderApplicationTable(){
+  const stage=document.querySelector("#tableStageFilter")?.value || "";
+  const q=(document.querySelector("#tableSearch")?.value || "").trim().toLowerCase();
+
+  let arr=jobs.map(j=>({j,a:getApp(j.id)}))
+    .filter(x=>x.a.stage!=="未投递")
+    .filter(x=>!stage || x.a.stage===stage)
+    .filter(x=>{
+      if(!q) return true;
+      return [x.j.school,x.j.position,x.j.district,x.j.employment,x.a.note]
+        .join(" ").toLowerCase().includes(q);
+    });
+
+  const body=document.querySelector("#applicationTableBody");
+  if(body){
+    body.innerHTML=arr.map(({j,a})=>`
+      <tr>
+        <td><b>${esc(j.school)}</b></td>
+        <td>${esc(j.position)}</td>
+        <td>${esc(j.district)}</td>
+        <td>${esc(j.employment)}</td>
+        <td>
+          <select onchange="updateStage('${j.id}',this.value);renderApplicationTable()">
+            ${stageOptions(a.stage)}
+          </select>
+        </td>
+        <td>${esc(a.updatedAt || "-")}</td>
+        <td>
+          <input class="${dueClass(a.nextDate)}" type="date" value="${esc(a.nextDate)}"
+                 onchange="updateNextDate('${j.id}',this.value);renderApplicationTable()">
+        </td>
+        <td>
+          <input class="note-input" type="text" value="${esc(a.note)}"
+                 placeholder="记录联系情况、试讲要求等"
+                 onchange="updateNote('${j.id}',this.value);renderApplicationTable()">
+        </td>
+        <td><a href="${j.source_url}" target="_blank">查看 ↗</a></td>
+      </tr>`).join("");
+  }
+
+  const empty=document.querySelector("#applicationEmpty");
+  if(empty) empty.classList.toggle("hidden",arr.length>0);
+
+  const all=jobs.map(j=>getApp(j.id)).filter(a=>a.stage!=="未投递");
+  const inProgress=all.filter(a=>["已投递","已联系","笔试","面试"].includes(a.stage)).length;
+  const upcoming=all.filter(a=>["笔试","面试"].includes(a.stage)).length;
+  const offers=all.filter(a=>a.stage==="Offer").length;
+  const closed=all.filter(a=>["未通过","放弃"].includes(a.stage)).length;
+
+  document.querySelector("#appInProgress").textContent=inProgress;
+  document.querySelector("#appUpcoming").textContent=upcoming;
+  document.querySelector("#appOffer").textContent=offers;
+  document.querySelector("#appClosed").textContent=closed;
+}
+
+function exportCSV(){
+  const rows=[["学校","岗位","地区","编制/性质","当前阶段","最近更新","下一步日期","备注","招聘来源"]];
+  jobs.forEach(j=>{
+    const a=getApp(j.id);
+    if(a.stage==="未投递") return;
+    rows.push([j.school,j.position,j.district,j.employment,a.stage,a.updatedAt,a.nextDate,a.note,j.source_url]);
+  });
+  const csv=rows.map(row=>row.map(v=>{
+    const s=String(v??"").replace(/"/g,'""');
+    return `"${s}"`;
+  }).join(",")).join("\n");
+  const blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="杭州教师求职总表_"+new Date().toISOString().slice(0,10)+".csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function render(){
+  const district=document.querySelector("#district").value;
+  const level=document.querySelector("#level").value;
+  const status=document.querySelector("#status").value;
+  const elig=document.querySelector("#elig").value;
+  const emp=document.querySelector("#emp").value;
+  const stageFilter=document.querySelector("#stageFilter").value;
+  const q=document.querySelector("#q").value.trim().toLowerCase();
+  const english=document.querySelector("#english").checked;
+  const active=document.querySelector("#active").checked;
+  const favonly=document.querySelector("#favonly").checked;
+  const inprocessonly=document.querySelector("#inprocessonly").checked;
+
+  const arr=jobs.filter(j=>{
+    if(district && j.district!==district)return false;
+    if(level && !j.level.includes(level))return false;
+    if(status && j.status!==status)return false;
+    if(elig && j.eligibility!==elig)return false;
+    if(emp==="公办编制" && !j.employment.includes("公办编制"))return false;
+    if(emp==="事业编" && !(j.employment.includes("事业编")||j.employment.includes("公办编制")))return false;
+    if(english && !isEnglish(j))return false;
+    if(active && !isActive(j))return false;
+    if(favonly && !favs.has(j.id))return false;
+    const app=getApp(j.id);
+    if(stageFilter && app.stage!==stageFilter)return false;
+    if(inprocessonly && app.stage==="未投递")return false;
+    if(q){
+      const hay=[j.school,j.position,j.subject,j.major,j.education,j.certificate,j.official_note,j.district].join(" ").toLowerCase();
+      if(!hay.includes(q))return false;
+    }
+    return true;
+  });
+
+  document.querySelector("#jobs").innerHTML=arr.map(j=>`
+  <div class="job">
+    <div class="head">
+      <div><div class="title">${esc(j.position)}</div><div class="school">${esc(j.school)} · ${esc(j.district)}</div></div>
+      <button class="star" onclick="toggleFav('${j.id}')" title="收藏">${favs.has(j.id)?"★":"☆"}</button>
+    </div>
+    <div class="tags">
+      ${statusTag(j)} ${eligTag(j)}
+      <span class="tag blue">${esc(j.employment)}</span>
+      <span class="tag">${esc(j.level)}</span>
+      <span class="tag">${esc(j.subject)}</span>
+      ${getApp(j.id).stage!=="未投递" ? `<span class="stage-badge ${stageClass(getApp(j.id).stage)}">${esc(getApp(j.id).stage)}</span>` : ""}
+    </div>
+    <div class="grid">
+      <div><b>招聘人数</b>${esc(j.count)}</div>
+      <div><b>发布时间</b>${esc(j.published)}</div>
+      <div><b>截止/进度</b>${esc(j.deadline)}</div>
+      <div><b>现在怎么做</b>${esc(j.action)}</div>
+      <div><b>学历/对象</b>${esc(j.education)}</div>
+      <div><b>专业要求</b>${esc(j.major)}</div>
+      <div><b>教师资格</b>${esc(j.certificate)}</div>
+      <div><b>27届判断</b>${esc(j.eligibility_text)}</div>
+    </div>
+    <div class="note"><b>核验说明：</b>${esc(j.official_note)}<br><b>当前来源：</b>${esc(j.source_type)}</div>
+    <div class="actions">
+      <a class="btn primary" href="${j.source_url}" target="_blank">查看招聘来源 ↗</a>
+      <button class="btn ghost" onclick="copyJob('${j.id}')">复制岗位摘要</button>
+    </div>
+
+    <div class="progress-box">
+      <div class="progress-grid">
+        <div>
+          <label>求职进度</label>
+          <select class="stage-select" onchange="updateStage('${j.id}', this.value)">
+            ${stageOptions(getApp(j.id).stage)}
+          </select>
+        </div>
+        <div>
+          <label>下一步日期（笔试/面试/截止等）</label>
+          <input type="date" value="${esc(getApp(j.id).nextDate)}" onchange="updateNextDate('${j.id}', this.value)">
+        </div>
+        <div>
+          <label>我的备注</label>
+          <input type="text" value="${esc(getApp(j.id).note)}" placeholder="如：9/23已投邮箱；等待电话；需准备试讲..." onchange="updateNote('${j.id}', this.value)">
+        </div>
+      </div>
+      <div class="timeline">
+        当前进度：<span class="stage-badge ${stageClass(getApp(j.id).stage)}">${esc(getApp(j.id).stage)}</span>
+        ${getApp(j.id).updatedAt ? ` · 最近更新：${esc(getApp(j.id).updatedAt)}` : ""}
+        ${getApp(j.id).nextDate ? ` · 下一步：${esc(getApp(j.id).nextDate)}` : ""}
+      </div>
+    </div>
+  </div>`).join("");
+
+  document.querySelector("#empty").classList.toggle("hidden",arr.length>0);
+  document.querySelector("#count").textContent=`${arr.length} 条`;
+  document.querySelector("#s1").textContent=arr.length;
+  const allStages=jobs.map(j=>getApp(j.id).stage);
+  document.querySelector("#s2").textContent=allStages.filter(s=>s==="已投递").length;
+  document.querySelector("#s3").textContent=allStages.filter(s=>s==="已联系").length;
+  document.querySelector("#s4").textContent=allStages.filter(s=>s==="笔试").length;
+  document.querySelector("#s5").textContent=allStages.filter(s=>s==="面试").length;
+  document.querySelector("#s6").textContent=allStages.filter(s=>s==="Offer").length;
+}
+
+function toggleFav(id){
+  favs.has(id)?favs.delete(id):favs.add(id);
+  localStorage.setItem("hz_teacher_favs_v3",JSON.stringify([...favs]));
+  render();
+}
+function saveApp(){
+  localStorage.setItem("hz_teacher_application_v5",JSON.stringify(applicationState));
+}
+function ensureApp(id){
+  if(!applicationState[id]) applicationState[id]={stage:"未投递",updatedAt:"",nextDate:"",note:""};
+  return applicationState[id];
+}
+function updateStage(id,stage){
+  const a=ensureApp(id);
+  a.stage=stage;
+  a.updatedAt=nowText();
+  saveApp();
+  render();
+  if(document.querySelector('#applicationsView')?.classList.contains('active')) renderApplicationTable();
+}
+function updateNextDate(id,date){
+  const a=ensureApp(id);
+  a.nextDate=date;
+  if(!a.updatedAt) a.updatedAt=nowText();
+  saveApp();
+  render();
+  if(document.querySelector('#applicationsView')?.classList.contains('active')) renderApplicationTable();
+}
+function updateNote(id,note){
+  const a=ensureApp(id);
+  a.note=note;
+  if(!a.updatedAt) a.updatedAt=nowText();
+  saveApp();
+  render();
+  if(document.querySelector('#applicationsView')?.classList.contains('active')) renderApplicationTable();
+}
+function exportProgress(){
+  const rows=jobs.map(j=>{
+    const a=getApp(j.id);
+    return {
+      学校:j.school, 岗位:j.position, 地区:j.district,
+      求职进度:a.stage, 最近更新:a.updatedAt, 下一步日期:a.nextDate,
+      备注:a.note, 招聘来源:j.source_url
+    };
+  }).filter(x=>x.求职进度!=="未投递" || x.备注 || x.下一步日期);
+  const blob=new Blob([JSON.stringify(rows,null,2)],{type:"application/json;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="杭州教师求职记录_"+new Date().toISOString().slice(0,10)+".json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+function showProgressSummary(){
+  const counts={};
+  STAGES.forEach(s=>counts[s]=0);
+  jobs.forEach(j=>counts[getApp(j.id).stage]++);
+  const text=STAGES.map(s=>`${s}：${counts[s]}`).join("\\n");
+  alert("求职进度汇总\\n\\n"+text);
+}
+function copyJob(id){
+  const j=jobs.find(x=>x.id===id);
+  const a=getApp(id); const txt=`${j.school}｜${j.position}｜${j.employment}｜求职进度：${a.stage}｜27届：${j.eligibility_text}｜${j.deadline}｜${j.source_url}`;
+  navigator.clipboard?.writeText(txt).then(()=>alert("岗位摘要已复制"));
+}
+["district","level","status","elig","emp","stageFilter","english","active","favonly","inprocessonly"].forEach(id=>document.querySelector("#"+id).addEventListener("change",render));
+document.querySelector("#q").addEventListener("input",render);
+async function loadRemoteData(){
+  try{
+    const stamp=Date.now();
+    const [jr,mr]=await Promise.all([
+      fetch(`jobs.json?v=${stamp}`),
+      fetch(`meta.json?v=${stamp}`)
+    ]);
+    if(!jr.ok) throw new Error("jobs.json");
+    jobs=await jr.json();
+    if(mr.ok){
+      const meta=await mr.json();
+      const box=document.querySelector("#updateBox");
+      box.innerHTML=`数据更新时间：${esc(meta.updated_at || "未知")}<br>${esc(meta.message || "关键资格请以原公告为准")}`;
+    }
+    render();
+    renderApplicationTable();
+  }catch(err){
+    document.querySelector("#updateBox").innerHTML="数据读取失败，请稍后刷新<br>或直接查看官方来源";
+    document.querySelector("#jobs").innerHTML='<div class="empty">暂时无法读取在线岗位数据。</div>';
+  }
+}
+loadRemoteData();
+</script>
+</body>
+</html>
