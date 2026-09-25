@@ -1,1 +1,9 @@
-{"updated_at":"2026-09-25 13:13","timezone":"Asia/Shanghai","mode":"automatic-v2","message":"已升级宣讲会/双选会监控；每日任务会同时检查岗位和招聘活动。","job_count":7,"event_count":6,"errors":[]}
+{
+  "updated_at": "2026-09-25 13:38",
+  "timezone": "Asia/Shanghai",
+  "mode": "automatic-v2",
+  "message": "本轮自动发现岗位候选 0 条、宣讲/双选活动候选 11 条；关键资格以原公告为准。",
+  "job_count": 7,
+  "event_count": 10,
+  "errors": []
+}
