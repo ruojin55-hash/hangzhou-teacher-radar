@@ -1,0 +1,41 @@
+name: Update teacher jobs
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Update job data
+        env:
+          TZ: Asia/Shanghai
+        run: python update_jobs.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "teacher-radar-bot"
+          git config user.email "teacher-radar-bot@users.noreply.github.com"
+          git add jobs.json meta.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "chore: daily teacher job update"
+            git push
+          fi
