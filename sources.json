@@ -85,6 +85,50 @@
       "official": true
     }
   ],
+  "event_sources": [
+    {
+      "name": "浙江大学就业服务平台",
+      "root": "https://www.career.zju.edu.cn/",
+      "official": true,
+      "source_group": "高校就业平台"
+    },
+    {
+      "name": "杭州师范大学就业创业服务平台",
+      "root": "https://career.hznu.edu.cn/",
+      "official": true,
+      "source_group": "高校就业平台"
+    },
+    {
+      "name": "杭州师范大学招聘会",
+      "root": "https://career.hznu.edu.cn/jobfair",
+      "official": true,
+      "source_group": "高校就业平台"
+    },
+    {
+      "name": "华东师范大学智慧就业网",
+      "root": "https://career.ecnu.edu.cn/",
+      "official": true,
+      "source_group": "高校就业平台"
+    },
+    {
+      "name": "北京师范大学就业资讯网",
+      "root": "https://career.bnu.edu.cn/",
+      "official": true,
+      "source_group": "高校就业平台"
+    },
+    {
+      "name": "浙江师范大学就业信息网",
+      "root": "https://career.zjnu.edu.cn/",
+      "official": true,
+      "source_group": "高校就业平台"
+    },
+    {
+      "name": "华中师范大学就业工作处",
+      "root": "https://zjc.ccnu.edu.cn/",
+      "official": true,
+      "source_group": "高校就业平台"
+    }
+  ],
   "rules": {
     "candidate_link_keywords": [
       "教师",
@@ -131,6 +175,56 @@
       "在编",
       "非编",
       "劳务派遣"
+    ],
+    "candidate_event_link_keywords": [
+      "宣讲",
+      "双选",
+      "招聘会",
+      "师资",
+      "基础教育",
+      "教师招聘",
+      "校园招聘",
+      "就业日历",
+      "jobfair",
+      "career"
+    ],
+    "event_keywords": [
+      "宣讲会",
+      "宣讲",
+      "双选会",
+      "招聘会",
+      "师资招聘",
+      "基础教育专场",
+      "校园招聘活动",
+      "空中宣讲"
+    ],
+    "event_relevance_keywords": [
+      "杭州",
+      "杭州市",
+      "学军中学",
+      "杭州高级中学",
+      "杭高",
+      "杭州第二中学",
+      "杭二中",
+      "杭州第四中学",
+      "杭四中",
+      "源清",
+      "长河",
+      "西溪中学",
+      "文理中学",
+      "钱塘区",
+      "西湖区",
+      "上城区",
+      "拱墅区",
+      "滨江区",
+      "萧山区",
+      "余杭区",
+      "临平区",
+      "富阳区",
+      "临安区",
+      "教师招聘",
+      "师资招聘",
+      "基础教育"
     ]
   }
 }
