@@ -1,7 +1,8 @@
 {
-  "updated_at": "2026-09-25 10:14",
+  "updated_at": "2026-09-25 11:16",
   "timezone": "Asia/Shanghai",
-  "mode": "seed",
-  "message": "首次部署后 GitHub Actions 将每天自动检查并更新。",
-  "job_count": 7
+  "mode": "automatic",
+  "message": "本轮自动发现 0 条候选页面；请以原公告为准。",
+  "job_count": 7,
+  "errors": []
 }
