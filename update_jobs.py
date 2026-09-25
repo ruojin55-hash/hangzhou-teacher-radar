@@ -13,7 +13,7 @@ from urllib.parse import urljoin, urlparse, urldefrag
 import requests
 from bs4 import BeautifulSoup
 
-ROOT = Path(__file__).resolve().parents
+ROOT = Path(__file__).resolve().parent
 CFG = json.loads((ROOT / "sources.json").read_text(encoding="utf-8"))
 JOBS_PATH = ROOT / "jobs.json"
 META_PATH = ROOT / "meta.json"
