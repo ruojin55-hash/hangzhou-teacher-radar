@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-10-23 08:28",
+  "updated_at": "2026-10-24 08:32",
   "timezone": "Asia/Shanghai",
   "mode": "automatic-v2",
-  "message": "本轮自动发现岗位候选 0 条、宣讲/双选活动候选 0 条；关键资格以原公告为准。",
+  "message": "本轮自动发现岗位候选 0 条、宣讲/双选活动候选 11 条；关键资格以原公告为准。",
   "job_count": 7,
-  "event_count": 14,
+  "event_count": 15,
   "errors": []
 }
